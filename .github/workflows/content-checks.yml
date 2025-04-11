@@ -1,0 +1,59 @@
+name: Content Checks and Fixes
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  content-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm install
+          
+      - name: Fix HTML links
+        run: npm run fix-links
+          
+      - name: Check markdown links
+        run: |
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
+            npx markdown-link-check "$file" -c .github/workflows/markdown-link-check-config.json
+          done
+          
+      - name: Check grammar
+        run: |
+          find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
+            npx write-good "$file" --no-passive --no-adverb --no-tooWordy --no-cliches
+          done
+          
+      - name: Check HTML formatting
+        run: |
+          find . -name "*.html" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
+            npx prettier --check --config .github/workflows/.prettierrc "$file"
+          done
+          
+      - name: Lint HTML
+        run: |
+          find . -name "*.html" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
+            npx html-validate --config .github/workflows/.htmlvalidate.json "$file"
+          done
+          
+      - name: Commit changes
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m "fix: update content and links" || exit 0
+          git push 
