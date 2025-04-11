@@ -459,7 +459,7 @@ img {
         hue-rotate(270deg)
         drop-shadow(0 0 3px rgba(147, 112, 219, 0.1));
     transition: all 0.5s ease;
-    border-radius: 50px;
+    border-radius: 20px;
     transform: perspective(1000px) rotateX(-2deg);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
@@ -471,7 +471,7 @@ img:hover {
         saturate(1.1)
         hue-rotate(90deg)
         drop-shadow(0 0 5px rgba(7, 224, 72, 0.15));
-    transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+    transform: perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.5);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -483,7 +483,7 @@ img:hover {
 }
 
 .image-row {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     gap: 1rem;
     margin: 1rem 0;
@@ -497,7 +497,7 @@ img:hover {
 }
 
 .image-row img:hover {
-    transform: scale(1.05) translateY(-5px);
+    transform: scale(1.5) translateY(-5px);
     z-index: 1;
 }
 
@@ -511,6 +511,15 @@ img:hover {
 .image-45 { height: 45vh; width: auto; }
 .image-50 { height: 50vh; width: auto; }
 .image-55 { height: 55vh; width: auto; }
+
+.image-rounded {
+    border-radius: 50px;
+    transition: border-radius 0.3s ease;
+}
+
+.image-rounded:hover {
+    border-radius: 50px;
+}
 
 .image-70-percent {
     width: 70%;
