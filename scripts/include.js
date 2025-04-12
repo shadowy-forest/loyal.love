@@ -17,4 +17,4 @@ function includeTitle(elementId, basePath = './') {
 
 function includeFooter(elementId, basePath = './') {
   return includeHTML(elementId, 'footer.html', basePath);
-} 
+}

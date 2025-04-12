@@ -1,4 +1,4 @@
-name: Content Checks and Fixes
+name: 👾 content checks and fixes
 
 on:
   push:
@@ -15,74 +15,95 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: ✅ setup node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           
-      - name: Cache dependencies
+      - name: ✅ cache dependencies
         uses: actions/cache@v3
         id: cache
         with:
-          path: node_modules
+          path: |
+            node_modules
+            ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
+      - name: ✅ install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
   content-checks:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        check: ['links', 'grammar', 'formatting', 'linting']
+      fail-fast: false
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Node.js
+      - name: ✅ setup node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: ✅ install dependencies
         run: npm install
 
-      - name: Fix HTML links
-        run: npm run fix-links
-        continue-on-error: true
+      - name: ✅ fix html links
+        if: matrix.check == 'links'
+        run: |
+          node scripts/fix-links.js || {
+            echo "::error::failed to fix HTML links"
+            exit 1
+          }
           
-      - name: Check markdown links
+      - name: ✅ check markdown links
+        if: matrix.check == 'links'
         run: |
           find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
-            npx markdown-link-check "$file" -c .github/workflows/markdown-link-check-config.json || exit 1
+            echo "checking links in $file"
+            npx markdown-link-check "$file" -c .github/workflows/.markdown-link-check-config.json || {
+              echo "::error::failed to check links in $file"
+              exit 1
+            }
           done
           
-      - name: Check grammar
+      - name: ✅ check grammar
+        if: matrix.check == 'grammar'
         run: |
           find . -name "*.md" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
-            npx write-good "$file" --no-passive --no-adverb --no-tooWordy --no-cliches || exit 1
+            echo "checking grammar in $file"
+            npx write-good "$file" --no-passive --no-adverb --no-tooWordy --no-cliches || {
+              echo "::error::failed to check grammar in $file"
+              exit 1
+            }
           done
           
-      - name: Check HTML formatting
+      - name: ✅ check html formatting
+        if: matrix.check == 'formatting'
         run: |
           find . -name "*.html" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
-            npx prettier --check --config .github/workflows/.prettierrc "$file" || exit 1
+            echo "checking formatting in $file"
+            npx prettier --check --config .github/workflows/.prettierrc.json "$file" || {
+              echo "::error::failed to check formatting in $file"
+              exit 1
+            }
           done
           
-      - name: Lint HTML
+      - name: ✅ lint html
+        if: matrix.check == 'linting'
         run: |
           find . -name "*.html" -not -path "./node_modules/*" -not -path "./.git/*" | while read -r file; do
-            npx html-validate --config .github/workflows/.htmlvalidate.json "$file" || exit 1
+            echo "linting $file"
+            npx html-validate --config .github/workflows/.htmlvalidate.json "$file" || {
+              echo "::error::failed to lint $file"
+              exit 1
+            }
           done
-          
-      - name: Commit changes
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add .
-          git commit -m "fix: update content and links" || exit 0
-          git push
