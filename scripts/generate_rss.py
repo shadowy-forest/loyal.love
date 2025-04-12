@@ -69,6 +69,12 @@ def extract_post_data(html_content: str, chapter_name: str = '') -> List[Dict[st
         text = text_elem.get_text(separator=' ', strip=True)
         text = re.sub(r'\s+', ' ', text)
 
+        first_image = None
+        for img in section.find_all_next('img', limit=1):
+            if img.get('src'):
+                first_image = img['src']
+                break
+
         date_match = re.search(r'(\d{4}),\s*(\w+),\s*(\d+)', title)
         if date_match:
             year, month, day = date_match.groups()
@@ -83,7 +89,8 @@ def extract_post_data(html_content: str, chapter_name: str = '') -> List[Dict[st
                 'description': text,
                 'link': link,
                 'guid': link,
-                'pubDate': pub_date
+                'pubDate': pub_date,
+                'image': first_image
             })
     
     return posts
@@ -137,7 +144,11 @@ def generate_rss() -> None:
     for post in all_posts:
         item = ET.SubElement(channel, "item")
         ET.SubElement(item, "title").text = sanitize_text(post['title'])
-        ET.SubElement(item, "description").text = sanitize_text(post['description'])
+
+        description = post['description']
+        if post['image']:
+            description += f'<br/><img src="{post["image"]}" alt="Post image"/>'
+        ET.SubElement(item, "description").text = description
         ET.SubElement(item, "link").text = post['link']
         guid = ET.SubElement(item, "guid")
         guid.text = post['guid']
