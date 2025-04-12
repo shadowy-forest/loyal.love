@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+source "$(dirname "$(realpath "$0")")/../utils.sh"
+
+log "👾 post-commit hook starting..."
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+if [ -f "scripts/generate_rss.sh" ]; then
+    log "updating rss feed..."
+    chmod +x scripts/generate_rss.sh scripts/generate_rss.py
+    python3 -m pip install -r requirements.txt
+    generate_rss
+
+    if git diff --quiet rss.xml; then
+        log "👾 no changes to rss feed."
+    else
+        log "👾 rss feed updated. committing changes..."
+        git add rss.xml
+        git commit -m "chore: update rss feed" --no-verify
+        log "👾 rss feed changes committed."
+    fi
+else
+    log "❌ rss feed generation script not found at scripts/generate_rss.sh"
+fi
+
+log "👾 running make lint..."
+run_lint
+
+log "👾 running make clean..."
+run_clean
+
+success "✅ post-commit hook completed at $(date)\n"

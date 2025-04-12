@@ -5,14 +5,10 @@
   "bracketSpacing": true,
   "arrowParens": "avoid",
   "endOfLine": "lf",
-  "semi": true,
+  "semi": false,
   "tabWidth": 2,
   "useTabs": false,
-  "htmlParser": "html",
-  "htmlVoidTags": ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"],
-  "preserveDoctypeCase": true,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
-  "htmlWhitespaceSensitivity": "strict",
-  "htmlSelfClosingTags": true
+  "htmlWhitespaceSensitivity": "strict"
 } 

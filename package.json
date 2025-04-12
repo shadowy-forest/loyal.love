@@ -1,7 +1,7 @@
 {
   "name": "lololo",
   "version": "1.0.0",
-  "description": "bt3gl's loyal love",
+  "description": "bt3gl's loyal.love.lore",
   "type": "module",
   "scripts": {
     "fix-links": "node .github/workflows/fix-links.js"
