@@ -1,11 +1,8 @@
 {
   "name": "lololo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "bt3gl's loyal.love.lore",
   "type": "module",
-  "scripts": {
-    "fix-links": "node .github/workflows/fix-links.js"
-  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "glob": "^10.4.5",

@@ -1,4 +1,4 @@
-.PHONY: server fix-links install clean rss
+.PHONY: install clean rss server lint
 
 PORT ?= 8000
 VENV = venv
@@ -14,14 +14,22 @@ install:
 	@echo "\n✅ virtual environment created and dependencies installed\n"
 
 clean:
-	@bash -c 'source scripts/utils.sh && run_clean'
+	@echo "\n👾 cleaning up..."
+	rm -rf node_modules/
+	rm -rf venv/
+	rm -f .DS_Store
+	@echo "\n✅ cleanup completed\n"
 
 rss:
-	@bash -c 'source scripts/utils.sh && generate_rss'
+	@bash -c 'source scripts/generate_rss.sh && generate_rss'
+
+validate-rss:
+	python3 scripts/validate_rss.py rss.xml
 
 server:
 	@echo "👾 starting local server on port $(PORT)..."
 	python3 scripts/server.py $(PORT)
 
 lint:
-	@bash -c 'source scripts/utils.sh && run_lint'
+	@echo "\n👾 running lint..."
+	@bash -c 'source scripts/run_lint.sh && run_lint'
