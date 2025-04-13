@@ -531,9 +531,9 @@ img:hover {
     display: flex;
     margin: 1rem auto;
     align-items: center;
-    max-width: 1600px;
+    max-width: 1400px;
     padding: 1rem;
-    gap: 1.5rem;
+    gap: 0.5rem;
 }
 
 .text-column {
