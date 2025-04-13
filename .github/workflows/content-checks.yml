@@ -59,7 +59,7 @@ jobs:
       - name: ✅ fix html links
         if: matrix.check == 'links'
         run: |
-          node scripts/fix-links.js || {
+          node scripts/fix_links.js || {
             echo "::error::failed to fix HTML links"
             exit 1
           }

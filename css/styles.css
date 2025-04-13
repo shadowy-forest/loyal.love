@@ -249,14 +249,11 @@ body > *:first-child {
     border-radius: 8px;
     backdrop-filter: blur(2px);
     border: 1px solid rgba(255, 255, 255, 0.03);
-    display: inline-block;
+    display: block;
     width: auto;
     max-width: 100%;
     transition: all 0.3s ease;
     overflow: hidden;
-    text-align: left;
-    margin-left: 0;
-    margin-right: auto;
     clear: both;
 }
 
@@ -296,18 +293,6 @@ body > *:first-child {
         transparent 100%
     );
     box-shadow: 0 0 5px rgba(7, 224, 72, 0.3);
-}
-
-.astro-status-right {
-    text-align: right;
-    margin-left: auto;
-    margin-right: 0;
-}
-
-.astro-status-left {
-    text-align: left;
-    margin-left: 0;
-    margin-right: auto;
 }
 
 .meanwhile-title {
@@ -441,12 +426,23 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    text-align: center;
 }
 
 .left-stuff {
     display: flex;
     justify-content: left;
+    align-items: left;
+    text-align: left;
+}
+
+.right-stuff {
+    display: flex;
+    justify-content: right !important;
+    align-items: right !important;
+    text-align: right !important;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 img {
@@ -535,9 +531,9 @@ img:hover {
     display: flex;
     margin: 1rem auto;
     align-items: center;
-    max-width: 1600px;
+    max-width: 1400px;
     padding: 1rem;
-    gap: 1.5rem;
+    gap: 0.5rem;
 }
 
 .text-column {
@@ -751,6 +747,7 @@ h1.post-text{
 h2.post-text{
     font-size: 1.1em;
     padding: 1.2em;
+    margin: 1rem auto;
     border: 1px solid rgba(255, 255, 255, 0.03);
     background: rgba(77, 6, 147, 0.03);
     border-radius: 8px;
@@ -808,19 +805,30 @@ h6.post-text::after {
     box-shadow: 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
-
-hr.between-posts:nth-of-type(odd) + .post-title,
-hr.between-posts:nth-of-type(odd) + .post-title + .astro-status {
+.post-title-right {
     margin-left: auto;
     margin-right: 0;
     text-align: right;
     display: block;
 }
 
-hr.between-posts:nth-of-type(even) + .post-title,
-hr.between-posts:nth-of-type(even) + .post-title + .astro-status {
+.post-title-left {
     margin-left: 0;
     margin-right: auto;
     text-align: left;
+    display: block;
+}
+
+.astro-status-right {
+    text-align: right;
+    margin-left: auto;
+    margin-right: 0;
+    display: block;
+}
+
+.astro-status-left {
+    text-align: left;
+    margin-left: 0;
+    margin-right: auto;
     display: block;
 }
