@@ -2,6 +2,10 @@
 
 <br>
 
+> 💡 <i>before each post, ask myself: are my thoughts helping humanity and bringing diplomacy, kindness, and positive energy to my audience, community, and friends? if not, redo.</i>
+
+<br>
+
 #### ➡️   you can subscribe to bt3gl's lololo with [rss.xml](rss.xml) (for example, [this is how you add it on brave](imgs/rss.png))
 
 #### ➡️   this website is deployed on **[ipfs](https://ipfs.tech/)** using **[fleek](https://app.fleek.xyz/)**
