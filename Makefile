@@ -1,4 +1,4 @@
-.PHONY: install clean rss server lint
+.PHONY: install clean rss server lint post post-post
 
 PORT ?= 8000
 VENV = venv
@@ -33,3 +33,11 @@ server:
 lint:
 	@echo "\n👾 running lint..."
 	@bash -c 'source scripts/run_lint.sh && run_lint'
+
+post:
+	python3 scripts/generate_post.py
+
+post-post:
+	make lint
+	make rss
+	make validate-rss
