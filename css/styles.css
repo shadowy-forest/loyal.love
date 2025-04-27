@@ -96,6 +96,28 @@ body > *:first-child {
     100% { left: 100%; }
 }
 
+.gradient-text {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient 8s ease infinite;
+    font-weight: bold;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
 @media (max-width: 768px) {
     .two-column {
         flex-direction: column;
@@ -806,4 +828,57 @@ h6.post-text::after {
     margin-left: 0;
     margin-right: auto;
     display: block;
+}
+
+.nice-table {
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nice-table:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.nice-table tbody tr:first-child td {
+    background: linear-gradient(45deg, 
+        rgba(77, 6, 147, 0.1) 0%, 
+        rgba(148, 97, 199, 0.1) 50%,
+        rgba(7, 224, 72, 0.1) 100%
+    );
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3em;
+    padding: 1rem;
+    text-align: center;
+}
+
+.nice-table td {
+    padding: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.nice-table tbody tr:last-child td {
+    background: rgba(255, 255, 255, 0.95);
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.nice-table td:hover {
+    background: rgba(77, 6, 147, 0.05);
 }
