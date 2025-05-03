@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "feedparser": "^2.2.10",
     "glob": "^10.4.5",
     "prettier": "^3.5.3"
   },

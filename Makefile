@@ -24,7 +24,7 @@ rss:
 	@bash -c 'source scripts/generate_rss.sh && generate_rss'
 
 validate-rss:
-	python3 scripts/validate_rss.py rss.xml
+	$(PYTHON) scripts/validate_rss.py rss.xml
 
 server:
 	@echo "👾 starting local server on port $(PORT)..."
