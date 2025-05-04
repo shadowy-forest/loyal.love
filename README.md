@@ -14,7 +14,7 @@
 
 <br>
 
-#### create a new entry
+#### creating a new entry
 
 <br>
 
@@ -35,7 +35,7 @@ make post
 
 <br>
 
-#### parse the post in your browser ([localhost:8000](http://localhost:8000))
+#### parsing the post in your browser ([localhost:8000](http://localhost:8000))
 
 <br>
 
@@ -45,7 +45,7 @@ make server
 
 <br>
 
-#### lint everything and update the rss file
+#### linting everything and update the rss file
 
 ```bash
 make post-post
