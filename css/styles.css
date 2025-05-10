@@ -119,22 +119,127 @@ body > *:first-child {
   }
   
 @media (max-width: 768px) {
+    body {
+        padding: 1rem 1rem;
+        margin: 0;
+    }
+
     .two-column {
         flex-direction: column;
         padding: 0;
+        gap: 1rem;
     }
 
     .image-column {
         order: -1;
-    }
-
-    .text-column,
-    .image-column {
         width: 100%;
         padding: 0;
     }
+
+    .text-column {
+        width: 100%;
+        padding: 0;
+    }
+
+    .big-title {
+        font-size: 2.8rem;
+        transform: none;
+        padding: 0 0.5rem;
+        letter-spacing: 1px;
+    }
+
+    .big-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .post-title {
+        font-size: 1.5rem;
+    }
+
+    .post-text {
+        font-size: 1rem;
+    }
+
+    h1.post-text {
+        font-size: 1.8rem;
+    }
+
+    h2.post-text {
+        font-size: 1.5rem;
+    }
+
+    h3.post-text {
+        font-size: 1.3rem;
+    }
+
+    h4.post-text {
+        font-size: 1.2rem;
+    }
+
+    h5.post-text {
+        font-size: 1.1rem;
+    }
+
+    h6.post-text {
+        font-size: 0.9rem;
+    }
+
+    .image-50 {
+        height: auto;
+        max-height: 40vh;
+        width: 100%;
+    }
+
+    .image-20 {
+        height: auto;
+        max-height: 30vh;
+        width: 100%;
+    }
+
+    .title-container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    .meanwhile-title {
+        font-size: 1.3rem;
+        padding: 0.5rem;
+    }
+
+    .astro-status {
+        font-size: 0.8rem;
+    }
+
+    pre {
+        width: 100%;
+        overflow-x: auto;
+        padding: 0.5rem;
+    }
+
+    code {
+        font-size: 0.9em;
+    }
 }
 
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .big-title {
+        font-size: 2rem;
+        padding: 0 0.3rem;
+        letter-spacing: 0.5px;
+    }
+
+    .post-title {
+        font-size: 1.3rem;
+    }
+
+    .meanwhile-title {
+        font-size: 1.1rem;
+    }
+}
 
 .big-title {
     font-size: 4.1rem;
@@ -147,6 +252,9 @@ body > *:first-child {
     z-index: 1;
     text-decoration: none;
     border-radius: 12px;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding: 0 1rem;
 }
 
 .big-title::before {
