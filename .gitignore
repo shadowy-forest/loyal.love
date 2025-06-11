@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+*.swp
+*.swo
+*~
+next_post.html
+yarn.lock

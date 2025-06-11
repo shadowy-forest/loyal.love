@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "/*": {
+      "Cache-Control": "public, max-age=0, must-revalidate"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/*",
+      "destination": "/shared/404.html",
+      "statusCode": 404
+    }
+  ],
+  "errorPages": {
+    "404": "/shared/404.html"
+  }
+} 
