@@ -8,7 +8,6 @@ from typing import Dict, Tuple
 def validate_rss(file_path: str) -> Tuple[bool, Dict]:
 
     feed = feedparser.parse(file_path)
-    
     if feed.bozo:
         print(f"❌ error: {feed.bozo_exception}")
         return False, None

@@ -1,24 +1,38 @@
-.PHONY: install clean rss server lint post post-post
+.PHONY: install optimize-images precompress server clean all setup rss validate-rss lint post post-post server-prod
 
 PORT ?= 8000
 VENV = venv
 PYTHON = $(VENV)/bin/python3
 
 install:
-	@echo "\n👾 installing dependencies..."
-	npm install
-	@echo "👾 setting up python virtual environment..."
-	python3 -m venv $(VENV)
-	$(PYTHON) -m pip install --upgrade pip
-	$(PYTHON) -m pip install -r requirements.txt
-	@echo "\n✅ virtual environment created and dependencies installed\n"
+	pip3 install -r requirements.txt
+
+optimize-images:
+	@echo "optimizing images for web performance..."
+	python3 scripts/optimize-images.py --directory imgs --quality 85 --webp-quality 80
+	@echo "image optimization complete!"
+
+precompress:
+	@echo "pre-compressing static files..."
+	python3 scripts/server.py --precompress
+	@echo "pre-compression complete!"
+
+server-prod:
+	@echo "starting production server with optimizations..."
+	python3 scripts/server.py --port 8000 --precompress
 
 clean:
-	@echo "\n👾 cleaning up..."
-	rm -rf node_modules/
-	rm -rf venv/
-	rm -f .DS_Store
-	@echo "\n✅ cleanup completed\n"
+	@echo "cleaning generated files..."
+	find . -name "*.gz" -delete
+	find imgs -name "*_optimized.*" -delete
+	find imgs -name "*_webp.webp" -delete
+	@echo "clean complete!"
+
+all: install optimize-images precompress
+	@echo "all optimizations complete!"
+
+setup: install all
+	@echo "setup complete! run 'make serve' to start the server."
 
 rss:
 	@bash -c 'source scripts/generate_rss.sh && generate_rss'
@@ -28,7 +42,7 @@ validate-rss:
 
 server:
 	@echo "👾 starting local server on port $(PORT)..."
-	python3 scripts/server.py $(PORT)
+	python3 scripts/server.py --port $(PORT)
 
 lint:
 	@echo "\n👾 running lint..."
