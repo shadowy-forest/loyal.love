@@ -5,7 +5,7 @@ from typing import Optional
 
 
 def generate_post_id(date: datetime.date) -> str:
-    """Generate a post ID in the format YYYY_month_DD"""
+    """generate a post ID in the format YYYY_month_DD"""
     return f"{date.year}_{date.strftime('%B').lower()}_{date.day:02d}"
 
 
@@ -20,12 +20,11 @@ def generate_post_html(
     meanwhile_content: Optional[str] = None,
     meanwhile_image: Optional[str] = None,
 ) -> str:
-    """Generate HTML for a new post in the website's format."""
+    """generate HTML for a new post in the website's format."""
     
     post_id = generate_post_id(date)
     date_str = f"{date.year}, {date.strftime('%B').lower()}, {date.day}"
-    
-    # Generate the main post HTML
+
     html = f"""
     <hr class="between-posts" id="{post_id}" name="{post_id}" />
     <h2 class="post-title post-title-{post_side}">{location}; {date_str}</h2>
@@ -45,8 +44,7 @@ def generate_post_html(
       </div>
     </div>
     """
-    
-    # Add meanwhile section if provided
+
     if meanwhile_title or meanwhile_content:
         html += f"""
     <h2 class="meanwhile-title"> meanwhile... {meanwhile_title or ''} </h2>
