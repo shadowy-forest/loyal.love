@@ -72,12 +72,12 @@ body > *:first-child {
     text-align: center;
     font-family: 'Calibri', sans-serif;
     color: rgb(59, 58, 60);
-    font-size: 4em;
+    font-size: 6em;
     margin: 40px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     letter-spacing: 2px;
     font-weight: 900;
-    animation: fadeIn 1.5s ease-in;
+    animation: fadeIn 1s ease-in;
 }
 
 @keyframes fadeIn {
@@ -806,7 +806,7 @@ code::after {
 .footer {
     text-align: center;
     width: fit-content;
-    margin: 2rem auto 0.5rem;
+    margin: 5rem auto 1rem;
     background: linear-gradient(45deg, 
         rgb(77, 6, 147) 0%, 
         rgb(148, 97, 199) 25%,
@@ -819,14 +819,14 @@ code::after {
     color: transparent;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.2rem;
     position: relative;
     animation: titleGlow 3s ease-in-out infinite;
     text-shadow: 0 0 10px rgba(7, 224, 72, 0.2);
     letter-spacing: 1px;
     transform: perspective(1000px) rotateX(-5deg);
     z-index: 1;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 .footer::before {
@@ -1090,4 +1090,44 @@ h6.post-text::after {
     filter: none !important;
     transform: perspective(1000px) rotateX(0deg) translateY(-5px) scale(1.2);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* -------------------- Footer chapter links -------------------- */
+.footer-season-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding-top: 0.5rem;
+    margin: 0 auto 0.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-season-link {
+    display: inline-block;
+    padding: 0.4em 0.9em;
+    border-radius: 999px;
+    background: linear-gradient(45deg, rgba(77, 6, 147, 0.9), rgba(148, 97, 199, 0.9), rgba(7, 224, 72, 0.9));
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(7, 224, 72, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.footer-season-link:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(45deg, rgb(148, 97, 199), rgb(7, 224, 72), rgb(77, 6, 147));
+    color: #ffffff !important;
+    box-shadow: 0 6px 16px rgba(7, 224, 72, 0.35);
+}
+
+@media (max-width: 480px) {
+    .footer-season-link {
+        font-size: 0.9rem;
+        padding: 0.35em 0.8em;
+    }
 }
