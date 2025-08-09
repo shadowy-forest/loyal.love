@@ -1,9 +1,8 @@
-## 💜 bt3gl's loyal.love.lore's back to the 90s html zine
+## 💜 bt3gl's loyal.love.lore zine
 
 <br>
 
-#### 💜 tl;dr: a random zine filled with humble, nerdy excerpts — my open diary, sharing the experience of building my research, family, and legacy.
-
+### my personal open diary sharing my experience as i build my research, family, && legacy
 
 <br>
 
