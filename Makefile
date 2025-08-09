@@ -6,7 +6,7 @@ PYTHON = $(VENV)/bin/python3
 
 
 venv:
-	python -m $(VENV) $(VENV)
+	python3 -m $(VENV) $(VENV)
 	source $(VENV)/bin/activate
 
 install: venv
