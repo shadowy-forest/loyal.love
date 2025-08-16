@@ -60,7 +60,9 @@ def extract_post_data(html_content: str, chapter_name: str = '') -> List[Dict[st
             continue
 
         title_elem = section.find_next('h2', class_='post-title')
-        text_elem = title_elem and title_elem.find_next('h4', class_='post-text')
+        text_elem = None
+        if title_elem:
+            text_elem = title_elem.find_next(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'], class_='post-text')
         
         if not (title_elem and text_elem):
             continue

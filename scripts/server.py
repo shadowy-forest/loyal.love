@@ -14,12 +14,6 @@ import io
 import sys
 
 ########################################################
-#                  constants
-########################################################
-
-PORT = 8000
-
-########################################################
 #           main class and methods
 ########################################################
 
@@ -154,10 +148,10 @@ class EnhancedHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_error(404, f"❌ file not found: {e}")
                 return None
 
-    def copyfile(self, source, outputfile):
+    def copyfile(self, source, output):
         """Override copyfile to handle broken pipe errors"""
         try:
-            super().copyfile(source, outputfile)
+            super().copyfile(source, output)
         except (BrokenPipeError, ConnectionResetError) as e:
             # Don't log these common disconnections - they're normal
             pass
