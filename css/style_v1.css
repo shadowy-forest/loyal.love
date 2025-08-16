@@ -1,8 +1,12 @@
+:root {
+    --perspective-transform: perspective(1000px) rotateX(-5deg);
+    --perspective-transform-y: perspective(1000px) rotateX(-5deg) translateY(20px);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border-radius: 8px;
 }
 
 body {
@@ -121,18 +125,6 @@ body > *:first-child {
     color: transparent;
     animation: gradient 8s ease infinite;
     font-weight: bold;
-  }
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
   }
 
 .gradient-text-usa {
@@ -278,7 +270,7 @@ body > *:first-child {
         margin: 0;
     }
 
-    .image-10, .image-15, .image-20, .image-25, .image-30, .image-35, .image-40, .image-45, .image-50, .image-55 {
+    .image-15, .image-20, .image-25, .image-30, .image-40, .image-50 {
         height: auto !important;
         width: 100% !important;
         max-width: 400px !important;
@@ -312,7 +304,7 @@ body > *:first-child {
     position: relative;
     color: #333333;
     letter-spacing: 2px;
-    transform: perspective(1000px) rotateX(-5deg) translateY(20px);
+    transform: var(--perspective-transform-y);
     z-index: 1;
     text-decoration: none;
     border-radius: 12px;
@@ -393,7 +385,7 @@ body > *:first-child {
     animation: titleGlow 3s ease-in-out infinite;
     text-shadow: 0 0 10px rgba(7, 224, 72, 0.2);
     letter-spacing: 1px;
-    transform: perspective(1000px) rotateX(-5deg);
+    transform: var(--perspective-transform);
     position: relative;
     z-index: 1;
     border-radius: 20px;
@@ -477,7 +469,7 @@ body > *:first-child {
     animation: titleGlow 3s ease-in-out infinite;
     text-shadow: 0 0 10px rgba(7, 224, 72, 0.2);
     letter-spacing: 1px;
-    transform: perspective(1000px) rotateX(-5deg);
+    transform: var(--perspective-transform);
     z-index: 1;
     max-width: 80%;
     margin-left: auto;
@@ -599,15 +591,6 @@ a:hover {
     text-align: left;
 }
 
-.right-stuff {
-    display: flex;
-    justify-content: right !important;
-    align-items: right !important;
-    text-align: right !important;
-    margin-left: auto;
-    margin-right: 0;
-}
-
 img {
     padding: 0.5;
     margin: 3rem 0;
@@ -680,16 +663,12 @@ img:hover {
     z-index: 1;
 }
 
-.image-10 { height: 10vh; width: auto; }
 .image-15 { height: 15vh; width: auto; }
 .image-20 { height: 20vh; width: auto; }
 .image-25 { height: 25vh; width: auto; }
 .image-30 { height: 30vh; width: auto; }
-.image-35 { height: 35vh; width: auto; }
 .image-40 { height: 40vh; width: auto; }
-.image-45 { height: 45vh; width: auto; }
 .image-50 { height: 50vh; width: auto; }
-.image-55 { height: 55vh; width: auto; }
 
 .image-rounded {
     border-radius: 50px;
@@ -824,7 +803,7 @@ code::after {
     animation: titleGlow 3s ease-in-out infinite;
     text-shadow: 0 0 10px rgba(7, 224, 72, 0.2);
     letter-spacing: 1px;
-    transform: perspective(1000px) rotateX(-5deg);
+    transform: var(--perspective-transform);
     z-index: 1;
     border-radius: 12px;
 }
